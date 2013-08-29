@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans 	xmlns="http://www.springframework.org/schema/beans"
+       	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:util="http://www.springframework.org/schema/util"
+	   	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-2.0.xsd"
+	   	default-autowire="byName" default-lazy-init="true">
+<!-- 测试环境 数据源 -->
+<!--<bean id="issueDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+    <property name="username" value="${issue.username}"></property>  
+    <property name="password" value="${issue.password}"></property>  
+    <property name="url" value="${issue.url}"></property>  
+    <property name="driverClassName" value="${issue.driverClassName}"></property>  
+</bean>  -->
+
+<!-- C3P0 配置 -->    
+<bean id="issueDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">    
+      <property name="driverClass">    
+        <value>${issue.driverClassName}</value>    
+      </property>    
+      <property name="jdbcUrl">    
+        <value>${issue.url}</value>    
+      </property>    
+      <property name="properties">    
+        <props>    
+            <prop key="hibernate.hbm2ddl.auto">update</prop>    
+            <prop key="c3p0.minPoolSize">1</prop>    
+            <prop key="hc3p0.maxPoolSize">10</prop>    
+            <prop key="hc3p0.timeout">60</prop>    
+            <prop key="c3p0.max_statement">50</prop>    
+            <prop key="c3p0.testConnectionOnCheckout">true</prop>    
+        <prop key="testConnectionOnCheckin">true</prop>    
+            <prop key="c3p0.testConnectionOnCheckout">true</prop>    
+            <prop key="c3p0.testConnectionOnCheckin">true</prop>    
+            <prop key="preferredTestQuery">SELECT 1</prop>    
+            <prop key="hibernate.c3p0.idle_test_period">60</prop>    
+            <prop key="user">${issue.username}</prop>    
+            <prop key="password">${issue.password}</prop>    
+        </props>    
+      </property>    
+    </bean>    
+	<bean id="lobHandler" class="org.springframework.jdbc.support.lob.DefaultLobHandler" lazy-init="true" />
+
+	<!--Hibernate SessionFatory-->
+	<bean id="issue" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="issueDataSource"/>
+		<property name="lobHandler" ref="lobHandler"/>
+		<property name="packagesToScan">
+			<list>
+				<value>yofoto.issue.pojo</value>
+			</list>
+		</property>
+		<!-- <property name="lobHandler" ref="lobHandler"/> -->		
+		<property name="hibernateProperties">
+			<props>
+			  <!-- see /components/orm/hibernate/meta/dialect.properties for all Dialect -->	
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<!-- <prop key="hibernate.dialect">org.hibernate.dialect.SQLServerDialect</prop> -->
+				<prop key="hibernate.show_sql">true</prop> 
+				<!--<prop key="hibernate.jdbc.batch_size">20</prop>-->
+				<!--<prop key="hibernate.jdbc.fetch_size">20</prop>-->
+				<prop key="hibernate.max_fetch_depth">1</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.jdbc.use_scrollable_resultset">true</prop>
+			</props>
+		</property>
+		<!--  -->
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="issue"/>  
+	</bean>
+	
+</beans>

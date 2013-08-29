@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" 
+"classpath:struts-2.1.dtd">
+<struts>
+<constant name="struts.multipart.paeser" value="cos"></constant>
+ 	<constant name="struts.multipart.maxSize" value="209715200"/>
+	<constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="false" />
+    <constant name="struts.ui.theme" value="simple"/>
+    <!-- struts2 安全漏洞:远程执行代码 -->
+     <constant name="struts.mapper.class" value="yofoto.issue.controller.RemoteBugRepairActionMapper"></constant>
+     <!-- 解决Action添加AOP后service无法注入的问题 -->
+    <constant name="struts.objectFactory.spring.autoWire.alwaysRespect" value="true"/>
+    <!-- struts2-Convention+Plugin 插件配置，实现Struts2的零配置 -->
+    <!-- 指定默认的父包 -->
+   	<constant name="struts.convention.default.parent.package" value="issue"/>
+   	<!-- 搜索此配置下的所有包中的类 -->
+   	<constant name="struts.convention.package.locators.basePackage" value="yofoto.issue"/>
+   	<!-- action存放的根包，如果不配，默认为struts、struts2、action、actions -->
+   	<constant name="struts.convention.package.locators" value="controller" />
+   	<!-- 返回页面的根路径 -->
+    <constant name="struts.convention.result.path" value="/page/"/>
+    <!-- 驼峰命名的分割符号 -->
+    <constant name="struts.convention.action.name.separator" value="_" />
+     <package name="issue"  extends="convention-default,json-default">  
+     	<interceptors>
+			
+			<interceptor-stack name="issueStack">
+				
+				<interceptor-ref name="fileUpload"/>
+               
+                <interceptor-ref name="params">
+                    <param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
+                </interceptor-ref>
+               
+			</interceptor-stack>
+		</interceptors> 
+		<default-interceptor-ref name="issueStack"/>    	 
+    	<global-results>
+    		<result name="json" type="json">
+				<param name="noCache">true</param> 
+				<!--ignoreHierarchy表示允许访问父类的属性  -->
+				<param name="ignoreHierarchy">false</param> 
+			</result>
+			<result name="index" type="redirect">/page/index.jsp</result>
+			<result name="login" type="redirect">/login</result>
+			<result name="error" type="redirect">/page/error.jsp</result>
+			
+		</global-results>  	
+    </package>
+</struts>    
