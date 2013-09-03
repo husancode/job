@@ -265,15 +265,12 @@ public class StafferServiceImpl extends SimpleHibernateDao<Staffer,Integer>{
 			int total = criteria.list().size();
 			page.setTotalCount(total);
 		}
-		System.out.println(page.getFirst());
-		System.out.println(page.getPageSize());
+	
 		criteria.setFirstResult(page.getFirst());
 		criteria.setMaxResults(page.getPageSize());
 		
 		List<Staffer> result = criteria.list();
-		for(Staffer s: result){
-			System.out.println(s.getName());
-		}
+		
 		page.setResult(result);
 		return page;
 	}

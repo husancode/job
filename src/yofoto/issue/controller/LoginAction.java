@@ -45,7 +45,6 @@ public class LoginAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
-		
 		return SUCCESS;
 	}
 	
@@ -68,7 +67,6 @@ public class LoginAction extends ActionSupport{
 			}else{
 				List<Team> teams = staffer.getTeams();
 				List<Department> departments = staffer.getDepartments();
-			
 				session.setAttribute("teams", teams.size());
 				session.setAttribute("departments", departments.size());
 				session.setAttribute("user", staffer);
@@ -107,7 +105,6 @@ public class LoginAction extends ActionSupport{
 				cookie.setPath("/");
 				ServletActionContext.getResponse().addCookie(cookie);
 			}
-			
 		}
 		return "login";
 	}
@@ -136,8 +133,4 @@ public class LoginAction extends ActionSupport{
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	
-	
-
-	
 }

@@ -1,0 +1,93 @@
+body {
+	margin: 0px;
+	height: 100%;
+	width: 100%;
+}#header1 {
+	height: 40px;
+	width: 1024px;
+	background-color: #CCCCCC;
+	line-height: 40px;
+	background-repeat: no-repeat;
+}
+#main #part2 #part8 #part10 {
+	height: auto;
+	width: 700px;
+	margin-left: 60px;
+}
+
+
+#header1 #yofo {
+	width: 150px;
+	float: left;
+	height: 40px;
+	background-image: url(../img/u38_normal.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	margin-left: 20px;
+}
+#header1 #qiye {
+	background-color: #CCCCCC;
+	background-repeat: no-repeat;
+	float: left;
+	font-weight: bold;
+	color: #333333;
+}
+#header1 #huanying {
+	float: right;
+	font-weight: bold;
+	color: #666666;
+	margin-top: auto;
+	margin-right: 30px;
+	margin-bottom: auto;
+	margin-left: auto;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-size: 14px;
+}
+#header4 {
+	height: 50px;
+	width: 1024px;
+	background-color: #CCCCCC;
+	line-height: 50px;
+	list-style-type: none;
+	float: left;
+}
+
+#header4 li {
+	float: left;
+	font-size: 16px;
+	list-style-type: none;
+	width: 130px;
+	text-align: center;
+}
+#header2 {
+	background-color: #999999;
+	height: 60px;
+	width: 1024px;
+	line-height: 60px;
+	font-family: "Î¢ÈíÑÅºÚ";
+}
+
+#header2 li {
+	list-style-type: none;
+	font-size: 20px;
+	font-weight: 100;
+	color: #FFFFFF;
+	width: 150px;
+	float: left;
+	text-align: center;
+	font-family: "Î¢ÈíÑÅºÚ";
+}
+a:link {
+	text-decoration: none;
+}
+
+
+a:visited {
+	text-decoration: none;
+}
+a:active {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: none;
+}

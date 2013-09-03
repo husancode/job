@@ -825,6 +825,19 @@ public class IssueServiceImpl extends SimpleHibernateDao<Issue,Integer>{
 		
 	}
 	
+	public List<Issue> getIssueExpireList(int day , int num){
+		Criterion[] criterion = new Criterion[3];
+		criterion[0] = Restrictions.eq("status", 1);
+		criterion[1] = Restrictions.eq("completeStatus", 1);
+		
+		criterion[2] = Restrictions.le("exprireDate", DateUtil.getExpireDate(day));
+		
+		Criteria issues = super.createCriteria(criterion);
+		issues.setMaxResults(num);
+		issues.addOrder(Order.desc("id"));
+		return issues.list();
+	}
+	
 	
 	
 	public List<String>  getAttachment(List<Attachment> attachments,String targetDirectory){

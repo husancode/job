@@ -1,0 +1,72 @@
+#main #part1 #part2 {
+	line-height: 40px;
+	height: 40px;
+	width: 905px;
+	float: left;
+	margin-left: 30px;
+	background-color: #CCCCCC;
+	margin-top: 20px;
+	margin-bottom: 10px;
+	padding: 0px;
+}
+#main #part1 #part2 ul {
+	height: 40px;
+	width: 880px;
+	background-color: #CCCCCC;
+	float: left;
+	background-position: center;
+	line-height: 40px;
+	margin: 0px;
+	padding: 0px;
+}
+#main #part1 #part3 {
+	height: 600px;
+	width: 905px;
+	float: left;
+	margin-left: 30px;
+	padding: 0px;
+}
+#main #part1 #part4 {
+	background-image: url(../img/u7_normal.png);
+	height: 30px;
+	width: 900px;
+	background-repeat: no-repeat;
+	background-position: center;
+	float: left;
+}
+
+
+
+#main #part1 #part2 ul li {
+	height: 40px;
+	line-height: 40px;
+	float: left;
+	padding: 0px;
+	margin: 0px;
+}
+#main #part1 #part3 ul {
+	line-height: 40px;
+	height: 40px;
+	width: 880px;
+	background-repeat: no-repeat;
+	background-position: bottom;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-bottom-style: solid;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 10px;
+	font-family: "Î¢ÈíÑÅºÚ";
+	font-style: normal;
+	font-weight: bold;
+	margin: 0px;
+}
+#main #part1 #part3 ul li {
+	line-height: 40px;
+	height: 40px;
+	padding: 0px;
+	margin: 0px;
+}

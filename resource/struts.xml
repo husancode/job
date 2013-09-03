@@ -24,7 +24,7 @@
     <constant name="struts.convention.action.name.separator" value="_" />
      <package name="issue"  extends="convention-default,json-default">  
      	<interceptors>
-			
+			<interceptor name="userInterceptor" class="yofoto.issue.controller.interceptor.UserInterceptor"></interceptor>
 			<interceptor-stack name="issueStack">
 				
 				<interceptor-ref name="fileUpload"/>
@@ -32,7 +32,7 @@
                 <interceptor-ref name="params">
                     <param name="excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*</param>
                 </interceptor-ref>
-               
+              	<interceptor-ref name="userInterceptor"/>
 			</interceptor-stack>
 		</interceptors> 
 		<default-interceptor-ref name="issueStack"/>    	 
@@ -42,7 +42,7 @@
 				<!--ignoreHierarchy表示允许访问父类的属性  -->
 				<param name="ignoreHierarchy">false</param> 
 			</result>
-			<result name="index" type="redirect">/page/index.jsp</result>
+			<result name="index" type="redirect">/index</result>
 			<result name="login" type="redirect">/login</result>
 			<result name="error" type="redirect">/page/error.jsp</result>
 			

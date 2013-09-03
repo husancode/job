@@ -1,9 +1,7 @@
 package yofoto.issue.controller;
 
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts2.ServletActionContext;
+import yofoto.issue.pojo.Staffer;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -13,21 +11,16 @@ import com.opensymphony.xwork2.ActionSupport;
  * @description
  */
 public class BaseAction extends ActionSupport {
-	protected Integer ids;
+	protected Staffer staffer;
+
+	public Staffer getStaffer() {
+		return staffer;
+	}
+
+	public void setStaffer(Staffer staffer) {
+		this.staffer = staffer;
+	}
+
 	
-	@Override
-	public String execute() throws Exception {
-		// TODO Auto-generated method stub
-		
-		return super.execute();
-	}
-
-	public Integer getIds() {
-		return ids;
-	}
-
-	public void setIds(Integer ids) {
-		this.ids = ids;
-	}
 	
 }

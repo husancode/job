@@ -1,0 +1,17 @@
+#main #part2 #part8 {
+	background-color: #D9D9D9;
+	height: 900px;
+	width: 905px;
+	float: left;
+	margin-left: 30px;
+}
+#main #part2 #part8 #part9 {
+	background-color: #C1C1C1;
+	height: 40px;
+	width: 840px;
+	margin-left: 30px;
+	margin-top: 20px;
+}
+#main #part2 #part8 #part9 p {
+	float: left;
+}

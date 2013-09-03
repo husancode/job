@@ -9,14 +9,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <link href="<%=basePath %>css/login.css" rel="stylesheet" type="text/css" />
 <title>企业执行系统EES
         登录</title>
-        <link href="<%=basePath %>Content/data/style.css" rel="stylesheet" type="text/css" />
-  <link href="<%=basePath %>Content/thickbox.css" rel="stylesheet" type="text/css" />
+      
 </head>
 <script type="text/javascript">
 function SubmitForm(){
-	
 	document.getElementById("form1").submit();
 }
 function checkForm(){
@@ -24,65 +23,24 @@ function checkForm(){
 }
 </script>
 <body>
-<div class="SubHeader relative">
-            <span class="logo"><a href="#">
-               </a> </span>
-                
-           
-        </div>
-        
-    <div class="Content">
-    
-        <div class="Right">
-            <div class="Bugicon Midbox">
-               企业执行系统EES</div>
-            <!--start of solution-->
-            <div class="Solution Insert Sub">
-                <form id="form1" method="post" action="login!toLogin">
-                <div class="box ">
-                    <label>
-                        Email</label> 
-                      
-                    <input class="inputWidth" name="email" id="email"  type="text">
-                   
-                </div>
-                <div class="box">
-                    <label>
-                        密码</label>
-                    <input class="inputWidth" name="Password" id="pwd" type="password">
-                   
-                </div>
-                <div class="box ">
-                    <label>
-                        &nbsp;</label>
-                    <p class="NoneBorder Smallerbox">
-                        <input name="rememberMe" type="checkbox">
-                        <span class="icon_biger">
-                            记住我</span>
-                    </p>
-                </div>
-                </form>
-                <div class="box ">
-                    <label>
-                        &nbsp;</label>
-                    <a href="javascript:SubmitForm();" class="Buttom icon_bigest"><span>
-                        登录</span></a> <font color="red"><s:property value="message"></s:property>
-                            </font> 
-                       <a href="#" title="忘记密码" class="Blue BigFont thickbox">
-                        忘记密码?</a>
-                    <div class="clear">
-                        <!-- -->
-                    </div>
-                </div>
-                <div class="clear">
-                    <!-- -->
-                </div>
-            </div>
-            <!--end of solution-->
-        </div>
-        <div class="clear">
-        </div>
-    </div>
+<div id="main">
+  <div id="nav_left">
+    <ul>
+      <li style="background:url(img/u10_normal.png) no-repeat center; width:165px; height:40px; line-height:40px;"></li>
+      <li style="width:165px; height:35px; line-height:40px;font-family:微软雅黑;font-size:21px;font-weight:normal; margin-left:10px;">企业执行系统 </li>
+      <li style="width:165px; height:35px; line-height:40px;font-family:微软雅黑;font-size:12px;font-weight:normal; margin-left:10px;">三生(中国)健康产业有限公司 </li>
+    </ul>
+  </div>
+  <form id="form1" method="post" action="login!toLogin">
+  <div id="nav_right"><ul>
+      <li style="width:300px; height:40px; line-height:40px; font-size:16px;"><label>账号 ：  <input name="email" id="email"  type="text" style="width:175px; height:20px; "/></label></li>
+      <li style="width:300px; height:40px; line-height:40px; font-size:16px;"><label>密码 ：  <input  name="Password" id="pwd" type="password" style="width:175px; height:20px;"/></label></li>
+      <li style="width:300px; height:40px; line-height:40px; margin-left:65px; margin-top:30px;"><input name="" type="button" value="登录" style="width:180px; height:30px;" onclick="javascript:SubmitForm();"/></li>
+      <li><font color="red"><s:property value="message"></s:property>
+                            </font> </li>
+    </ul></div>
+    </form>
+</div>
    
 </body>
 </html>

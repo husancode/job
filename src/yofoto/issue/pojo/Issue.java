@@ -34,6 +34,9 @@ public class Issue {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE,generator="S_Issue")  
 	@SequenceGenerator(name="S_Issue",allocationSize=1,initialValue=1, sequenceName="S_Issue") 
 	private Integer id;
+	
+	//外键
+	private Integer subjectItemId;
 	//标题
 	private String title;
 	//所属模块
@@ -336,6 +339,14 @@ public class Issue {
 
 	public void setIssueType(Integer issueType) {
 		this.issueType = issueType;
+	}
+
+	public Integer getSubjectItemId() {
+		return subjectItemId;
+	}
+
+	public void setSubjectItemId(Integer subjectItemId) {
+		this.subjectItemId = subjectItemId;
 	}
 	
 	

@@ -1,0 +1,84 @@
+#part1 {
+	width: 1100px;
+}
+#part1 ul {
+	line-height: 40px;
+	height: 40px;
+	width: 1100px;
+	background-image: url(../img/u102_line.png);
+	background-repeat: no-repeat;
+	background-position: bottom;
+}
+#part-1 {
+	margin-top: 0px;
+	margin-left: 20px;
+}
+#part-1 ul {
+	height: 40px;
+	width: 850px;
+	line-height: 40px;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	margin: 0px;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+}
+
+#part-1 ul li {
+	float: left;
+}
+
+
+li {
+	list-style-type: none;
+}
+
+#part1 ul li {
+	float: left;
+	margin-right: 50px;
+	list-style-type: none;
+}
+#p_1 {
+	float: left;
+	height: 430px;
+	width: 905px;
+	margin-top: 30px;
+	margin-left: 30px;
+	background-image: url(../img/u41_normal.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+#p_2 {
+	float: left;
+	height: 465px;
+	width: 905px;
+	margin-left: 30px;
+	background-image: url(../img/u43_normal.png);
+}
+#p_3 {
+	float: left;
+	height: 430px;
+	width: 905px;
+	margin-left: 30px;
+	background-image: url(../img/u45_normal.png);
+	background-repeat: no-repeat;
+	background-position: left;
+}
+#p_4 {
+	background-image: url(../img/u47_normal.png);
+	float: left;
+	height: 567px;
+	width: 905px;
+	margin-left: 30px;
+}
+#p_5 {
+	background-image: url(../img/u49_normal.png);
+	float: left;
+	height: 560px;
+	width: 905px;
+	margin-left: 30px;
+}
