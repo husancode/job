@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>工作计划_搜索未完成项目_任务展开_添加任务</title>
+<link href="css/page.css" type="text/css" rel="stylesheet" />
+<script src="js/showdiv.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="mina">
+  <div class="mina_log">
+    <div class="mina_log_log"><img src="images/login_log.png" /></div>
+    <div  class="mina_log_line"><img  src="images/login_log_ling.png" /></div>
+    <div class="mina_log_name"><strong>企业执行系统</strong></div>
+    <div class="mina_log_user"> <span style=" color:#838383;">欢迎您，</span><span style="color:#3c9dc4;"><strong>唐俊杰</strong></span> &nbsp; <a href="#"><span style="color:#303030;"><strong>退出</strong></span></a> </div>
+  </div>
+  <div class="mina_menu">
+    <div class="mina_menu_bm">
+      <div class="mina_menu_bm1">企划部</div>
+      <div class="mina_menu_bm2">计划部</div>
+      <div class="mina_menu_bm2">采购部</div>
+      <div class="mina_menu_bm2">生产部</div>
+      <div class="mina_menu_bm2">研发部</div>
+      <div class="mina_menu_bm2">网络信息部</div>
+    </div>
+  </div>
+  <div class="mina_nav">
+    <div class="mina_nav_bm">
+      <div class="mina_nav_bm2"><a href="温馨提示.html">温馨提醒</a></div>
+      <div class="mina_nav_bm1"><a href="工作计划_搜索未完成项目_任务展开_添加任务.html">工作计划</a></div>
+      <div class="mina_nav_bm2"><a href="#">我的任务</a></div>
+      <div class="mina_nav_bm2"><a href="#">所有任务</a></div>
+      <div class="mina_nav_bm2"><a href="#">任务评分</a></div>
+      <div class="mina_nav_bm2"><a href="#">任务统计</a></div>
+      <div class="mina_nav_bm2"><a href="综合汇总_绩效评分(给主管打分1.2).html">综合汇总</a></div>
+    </div>
+  </div>
+  <div class="summary">
+    <div class="summary_title">
+      <div class="summary_title_name1"><a href="工作计划_搜索未完成项目_任务展开_添加任务.html">提交项目</a></div>
+      <div class="summary_title_name2"><a href="工作计划_任务细分.html">任务细分</a></div>
+    </div>
+    <div class="summary_mina">
+      <div class="summary_mina_con">
+        <div  class="tijiaoadd">
+          <div class="xiangmu_show"><a href="#">新增项目</a></div>
+          <div class="xiangmu_show2"><a href="#">当月项目</a></div>
+          <div class="xiangmu_show2"><a href="#">历史项目</a></div>
+        </div>
+        <div class="renwu_info">
+          <div style="height:25px; margin:10px;">
+            <div id="tab_show1" onclick="showhidetable('tab_show1','renweu1')" style=" margin-top:5px; width:24px; height:24px;background-image:url(images/icon_show.png); float:left; cursor:pointer;" ></div>
+            <div style="float:left; padding-left:10px; line-height:20px; font-size:12px;">
+              <div style="float:left;">工作项目：
+                <input value="市场发展规划宣导大会"  style="width:280px; height:28px;"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;责任人： </div>
+              <div class="style_select">
+                <select >
+                  <option>席连</option>
+                  <option>沈强</option>
+                </select>
+              </div>
+            </div>
+            <div style="float:right; "><a href="#" style="color:#3c9dc4; font-size:12px;" onclick="adddiv2(this)">添加新项目</a></div>
+          </div>
+        </div>
+		<div id="renweu1" class="renwu" >
+		 <div class="renwu_con" >
+        <div class="renwu_one">111</div>
+        </div>
+     
+		</div>
+        <div id="xiangmu_info2" class="renwu_info" style="display:none;">
+          <div style="height:24px; margin:10px; ">
+            <div id="tab_show2" onclick="showhidetable('tab_show2','table_show2')" style=" margin-top:5px; width:24px; height:24px;background-image:url(images/icon_show.png); float:left; cursor:pointer;" ></div>
+            <div style="float:left; padding-left:10px; line-height:20px; font-size:12px;">
+              <div style="float:left;">工作项目：
+                <input value="市场发展规划宣导大会"  style="width:280px; height:28px;"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;责任人： </div>
+              <div class="style_select">
+                <select >
+                  <option>席连</option>
+                  <option>沈强</option>
+                </select>
+              </div>
+            </div>
+            <div style="float:right; "><a href="#" style="color:#3c9dc4; font-size:12px;" onclick="adddiv2(this)">添加新项目</a></div>
+          </div>
+        </div>
+        <div id="table_show2" style="font-size:12px; color:#838383; margin:20px; display:none; "> 同上 </div>
+        <div id="xiangmu_info3" class="renwu_info" style="display:none;">
+          <div style="height:24px; margin:10px; ">
+            <div id="tab_show3" onclick="showhidetable('tab_show3','table_show3')" style=" margin-top:5px; width:24px; height:24px;background-image:url(images/icon_show.png); float:left; cursor:pointer;" ></div>
+            <div style="float:left; padding-left:10px; line-height:20px; font-size:12px;">
+              <div style="float:left;">工作项目：
+                <input value="市场发展规划宣导大会"  style="width:280px; height:28px;"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;责任人： </div>
+              <div class="style_select">
+                <select >
+                  <option>席连</option>
+                  <option>沈强</option>
+                </select>
+              </div>
+            </div>
+            <div style="float:right; "><a href="#" style="color:#3c9dc4; font-size:12px;" onclick="adddiv2(this)">添加新项目</a></div>
+          </div>
+        </div>
+        <div id="table_show3" style="font-size:12px; color:#838383; margin:20px; display:none; "> 同上 </div>
+        <div id="xiangmu_info4" class="renwu_info" style="display:none;">
+          <div style="height:24px; margin:10px; ">
+            <div id="tab_show4" onclick="showhidetable('tab_show4','table_show4')" style=" margin-top:5px; width:24px; height:24px;background-image:url(images/icon_show.png); float:left; cursor:pointer;" ></div>
+            <div style="float:left; padding-left:10px; line-height:20px; font-size:12px;">
+              <div style="float:left;">工作项目：
+                <input value="市场发展规划宣导大会"  style="width:280px; height:28px;"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;责任人： </div>
+              <div class="style_select">
+                <select >
+                  <option>席连</option>
+                  <option>沈强</option>
+                </select>
+              </div>
+            </div>
+            <div style="float:right; "><a href="#" style="color:#3c9dc4; font-size:12px;" onclick="adddiv2(this)">添加新项目</a></div>
+          </div>
+        </div>
+        <div id="table_show4" style="font-size:12px; color:#838383; margin:20px; display:none; "> 同上 </div>
+        <div style=" width:100%; height:60px;background-color:#FFFFFF; padding-top:20px;">
+          <div class="style_button2" >
+            <button type="submit">提交</button>
+          </div>
+          <div class="style_button3">
+            <button type="submit">取消</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</body>
+</html>
