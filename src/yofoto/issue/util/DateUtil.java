@@ -13,6 +13,13 @@ import java.util.List;
  */
 public class DateUtil {
 	
+	public static String getMonth(Date date){
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(date);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM");
+		return df.format(calendar.getTime());
+	}
+	
 	//返回上个月
 	public static String getPrevMonth(){
 		Calendar calendar = Calendar.getInstance();
@@ -85,8 +92,7 @@ public class DateUtil {
 	}
 	public static void main(String[] args) {
 		Date aDate = new Date();
-		System.out.println(aDate);
-		System.out.println(aDate.getDate());
+		System.out.println(DateUtil.getMonth(aDate));
 	}
 
 }

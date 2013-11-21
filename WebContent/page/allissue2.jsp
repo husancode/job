@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="header2.jsp" %>
+<%@ include file="headernew.jsp" %>
 <%@ taglib uri="/struts-tags" prefix="s"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,6 +21,10 @@ function SubForm() {
 </script>
 </head>
 <script type="text/javascript" src="calender/WdatePicker.js"></script>
+ <link href="<%=basePath %>Content/data/style.css" rel="stylesheet" type="text/css" />
+   <link href="<%=basePath %>Content/thickbox.css" rel="stylesheet" type="text/css" />
+   <script src="<%=basePath %>Scripts/common.js" type="text/javascript"></script>
+   <script src="<%=basePath %>Scripts/thickbox.js" type="text/javascript"></script>
 <body>
 <!-- start of content -->
     <div class="Content">
@@ -28,7 +32,7 @@ function SubForm() {
             <div class="Bugicon Midbox">
                 所有任务</div>
             <div class="relative CenterBox Sub">
-                <form id="_form" action="<%=basePath %>allissue1" method="post">
+                <form id="_form" action="<%=basePath %>allissue2" method="post">
                 <input value="<s:property value="#request.page.orderBy" />" name="page.orderBy" id="OrderBy" type="hidden">
                 <input value="<s:property value="#request.team.tid" />" name="tid" type="hidden">
                 <input id="pageIndex" value="<s:property value="#request.page.pageIndex" />" name="page.pageIndex" type="hidden">

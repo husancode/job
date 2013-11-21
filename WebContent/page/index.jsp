@@ -8,68 +8,134 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>温馨提醒</title>
+<style type="text/css">
 
- <script src="<%=basePath %>Scripts/common.js" type="text/javascript"></script>
- <script src="<%=basePath %>Scripts/jquery-1.3.2.min.js" type="text/javascript"></script>
- <link href="<%=basePath %>css/header.css" rel="stylesheet" type="text/css" />
-<link href="<%=basePath %>css/wxtx.css" rel="stylesheet" type="text/css" />
- <script type="text/javascript">
- 
- </script>
+div.fileinputs {
+	position: relative;
+	float:left;
+	width: 150px;
+}
+
+div.fakefile {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+}
+
+input.file {
+	position: relative;
+	text-align: right;
+	widows:150px;
+	-moz-opacity:0 ;
+	filter:alpha(opacity: 0);
+	opacity: 0;
+	z-index: 2;
+}
+
+.ff{
+float:right;
+position: relative;
+left: 100px;
+display: none;
+}
+
+
+</style>
+<SCRIPT type="text/javascript">
+function sselect(){
+	$(".ff").show();
+}
+function submit(){
+	var form = document.getElementById("form1");
+	form.submit();
+}
+function downLoad(aa){
+	var url = "file_up!downLoad?id="+aa;
+	window.location= url;
+}
+</SCRIPT>
 </head>
 <body>
-<div id="header1">
-  <div id="yofo"></div>
-  <div id="qiye">| &nbsp;企业执行系统</div>
-  <div id="huanying">欢迎你，<font color="#0033CC">yotofo</font><a href="">退出</a> </div>
-</div>
-<div id="header2">
-  <li style="background: #666666; margin-left:30px;">企划部</li>
-  <li>计划部</li>
-  <li>采购部</li>
-  <li>生产部</li>
-  <li>研发部</li>
-  <li style="width:200px;">网络信息部</li>
-</div>
-<div id="header4">
-  <li style="width:120px;background: #B9B9B9; margin-left:30px;"><a href="#">温馨提醒</a></li>
-  <li><strong><a href="工作计划.html">工作计划</a></strong></li>
-  <li><a href="我的任务.html">我的任务</a></li>
-  <li><a href="所有任务.html">所有任务</a></li>
-  <li><a href="任务评分.html">任务评分</a></li>
-  <li><a href="任务统计.html">任务统计</a></li>
-  <li><a href="综合汇总_员工版1_2_.html">综合汇总</a></li>
-</div>
-<div id="main">
-  <div id="part">
-    <div id="part1"><strong>请相互提醒！</strong></div>
-    <div id="part2">
-      <li>未评分工作项目: &nbsp;<s:iterator value="#request.toScoreIssues" var="issue">
-       <a target="_blank" href="<%=basePath %>issuehandle?id=<s:property value="#issue.id" />" ><b><s:property value="#issue.title" />&nbsp;|</b></a>
-      </s:iterator>
-      
-      </li>
-      <li>待审核工作任务: &nbsp;<s:iterator value="#request.toReviewIssues" var="issue">
-       <a target="_blank" href="<%=basePath %>issuehandle?id=<s:property value="#issue.id" />" ><b><s:property value="#issue.title" />&nbsp;|</b></a>
-      </s:iterator>
-      </li>
-      <li>工作任务即将到期: &nbsp;
-      <s:iterator value="#request.expireIssues" var="issue">
-       <a target="_blank" href="<%=basePath %>issuehandle?id=<s:property value="#issue.id" />" ><b><s:property value="#issue.title" />&nbsp;|</b></a>
-      </s:iterator>
-	   </li>
-      <li>新工作计划表下载: &nbsp;<a href="提交任务.html">市场发展规划宣导大会（项目表） <font color="#FF0000"><strong>NEW</strong></font></a><input name="" type="button" value="上传计划表"  style="width:95px; height:25px; margin-left:30px;"/> </li>
-      <li>优秀任务评分确认: &nbsp;<a href="领导确认评分">市场发展规划宣导大会 <font color="#FF0000"><strong>NEW</strong></font></a> </li>
-	  <li>任务延期确认: &nbsp;<a href="领导确认评分">市场发展规划宣导大会 <font color="#FF0000"><strong>NEW</strong></font></a> </li>
-	  <li>任务取消确认: &nbsp;<a href="领导确认评分">市场发展规划宣导大会 <font color="#FF0000"><strong>NEW</strong></font></a> </li>
+<div class="mina_nav">
+    <div id="div1" class="mina_nav_bm">
+      <div class="mina_nav_bm1"><a href="index">温馨提醒</a></div>
+      <div class="mina_nav_bm2"><a href="planadd">工作计划</a></div>
+      <div class="mina_nav_bm2"><a href="myissue2">我的任务</a></div>
+      <div class="mina_nav_bm2"><a href="allissue2">所有任务</a></div>
+      <div class="mina_nav_bm2"><a href="#">任务评分</a></div>
+      <div class="mina_nav_bm2"><a href="#">任务统计</a></div>
+      <div class="mina_nav_bm2"><a href="综合汇总_绩效评分(给主管打分1.2).html">综合汇总</a></div>
     </div>
-    <div id="part3"></div>
-    <div id="part4">企业执行系统使用说明 </div>
-    <div id="part5">目标说明：</div>
-    <div id="part6">
-      <li>1、每月1日至10日为当月填写绩效考核日；并且为上月目标填写成效并为自己评分；为上月的行为才能进行自我评分； 
-        若上级是经理及以上级别的，要为上级评分。 </li>
-      <li>2、上级为下级的上月绩效及行为评分并为当月新目标进行审核（审核可以去下属历史目标审核）行为才能说明。 </li>
+  </div>
+  <div class="wenxing">
+    <div class="wenxing_mina">
+      <div class="wenxing_mina_con">
+        <div class="wenxing_mina_point">
+          <div class="wenxing_mina_point_pg"></div>
+          <div class="wenxing_mina_point_btn">
+          <!-- 文件上传样式修改 -->
+          <form id="form1" action="file_up" enctype="multipart/form-data" method="post">
+           <div class="fileinputs"><input type="file" id="upload" name="upload" class="file" onchange="sselect();"/>
+			<div class="fakefile"><img src="images/upload_btn.png" /></div>
+		  </div>
+		  <div class="ff"><button onclick="submit();">提交</button></div>
+		 </form>
+        
+		</div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">1.  未评分工作项目：</div>
+          <div class="wenxing_mina_del_info">
+          <s:iterator value="#request.toScoreIssues" var="issue">
+          	<a href="#"><s:property value="#issue.title" /></a> |
+          </s:iterator>
+       ...... </div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">2.  待审核工作任务：</div>
+          <div class="wenxing_mina_del_info"> 
+          <s:iterator value="#request.toReviewIssues" var="issue">
+          	<a href="#"><s:property value="#issue.title" /></a> |
+          </s:iterator> ...... </div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">3.  工作任务即将到期：</div>
+          <div class="wenxing_mina_del_info">
+          <s:iterator value="#request.expireIssues" var="issue">
+          	<a href="#"><s:property value="#issue.title" /></a> |
+          </s:iterator> ...... </div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">4.  新工作计划表下载：</div>
+          <div class="wenxing_mina_del_info"><a href="javascript:void(0)" onclick="downLoad('<s:property value="#request.upload.id"/>')"><s:property value="#request.upload.fileName"/></a> </div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">5.  优秀任务评分确认：</div>
+          <div class="wenxing_mina_del_info"><a href="温馨提示_优秀任务评分确认.html">市场发展规划宣导大会</a> </div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">6.  任务延期确认：</div>
+          <div class="wenxing_mina_del_info">  <s:iterator value="#request.yqIssues" var="issue">
+          	<a target="_blank" href="issueexpire!yqqr?id=<s:property value="#issue.id" />"><s:property value="#issue.title" /></a> |
+          </s:iterator> </div>
+        </div>
+        <div class="wenxing_mina_del">
+          <div class="wenxing_mina_del_name">7.  任务取消确认：</div>
+          <div class="wenxing_mina_del_info"> <s:iterator value="#request.cancelIssues" var="issue">
+          	<a target="_blank" href="issuecancel!cancelqr?id=<s:property value="#issue.id" />"><s:property value="#issue.title" /></a> |
+          </s:iterator> </div>
+        </div>
+      </div>
+	  <div class="wenxing_mina_ex">
+	  <p >企业执行系统使用说明 </p>
+	  <div  class="wenxing_mina_ex_del">
+	 <span> 目标说明：</span> <br /> 
+1、每月1日至10日为当月填写绩效考核日；并且为上月目标填写成效并为自己评分；为上月的行为才能进行自我评分；<br /> 
+    &nbsp;&nbsp; &nbsp; 若上级是经理及以上级别的，要为上级评分。 <br /> 
+2、上级为下级的上月绩效及行为评分并为当月新目标进行审核（审核可以去下属历史目标审核）行为才能说明。
+	  </div>
+	  </div>
     </div>
   </div>
 </div>

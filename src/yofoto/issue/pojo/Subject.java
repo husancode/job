@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,8 +32,7 @@ public class Subject{
 	private String title;
 	
 	//子任务
-	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="subjectId")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="subject",fetch=FetchType.LAZY)
 	@OrderBy("id desc")
 	private List<SubjectItem> items;
 	
@@ -44,6 +44,21 @@ public class Subject{
 	
 	//完成时间
 	private Date completeDate;
+	//发布时间
+	private Date publishDate;
+	//所属月份
+	private String month;
+	
+	//状态：1未确认 2 已确认
+	private int status;
+	
+	public int getStatus() {
+		return status;
+	}
+	
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public Integer getId() {
 		return id;
@@ -91,6 +106,22 @@ public class Subject{
 
 	public void setTeamID(Integer teamID) {
 		this.teamID = teamID;
+	}
+
+	public Date getPublishDate() {
+		return publishDate;
+	}
+
+	public void setPublishDate(Date publishDate) {
+		this.publishDate = publishDate;
+	}
+
+	public String getMonth() {
+		return month;
+	}
+
+	public void setMonth(String month) {
+		this.month = month;
 	}
 
 }

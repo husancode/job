@@ -53,8 +53,6 @@ public class Issue {
 	@ManyToOne
 	private Staffer completer;
 	
-	
-	
 	//审核人，默认为发布者
 	@ManyToOne
 	private Staffer reviewer;
@@ -64,7 +62,7 @@ public class Issue {
 	private Date exprireDate;
 	//完成时间
 	private Date completeDate;
-	//状态 1.有效2无效
+	//状态 1.有效2无效;补充 0待确定
 	private Integer status;
 	/*//问题明细
 	@OneToOne(cascade=CascadeType.ALL)
@@ -102,10 +100,17 @@ public class Issue {
 	private Integer percentage;
 	
 	private String perReason;
+	//任务取消原因
+	private String cancelReason;
+	//1申请取消任务2，同意取消3，不同意延期
+	private Integer cancelFlag;
 	
 	private Integer originalPercentage;
 	
 	private Date originalExpireDate;
+	
+	//1.申请延期任务 2.同意延期3不同意延期
+	private Integer expireFlag;
 	
 	//
 	private Integer overLevel;
@@ -348,7 +353,30 @@ public class Issue {
 	public void setSubjectItemId(Integer subjectItemId) {
 		this.subjectItemId = subjectItemId;
 	}
-	
+
+	public Integer getExpireFlag() {
+		return expireFlag;
+	}
+
+	public void setExpireFlag(Integer expireFlag) {
+		this.expireFlag = expireFlag;
+	}
+
+	public String getCancelReason() {
+		return cancelReason;
+	}
+
+	public void setCancelReason(String cancelReason) {
+		this.cancelReason = cancelReason;
+	}
+
+	public Integer getCancelFlag() {
+		return cancelFlag;
+	}
+
+	public void setCancelFlag(Integer cancelFlag) {
+		this.cancelFlag = cancelFlag;
+	}
 	
 	
 }

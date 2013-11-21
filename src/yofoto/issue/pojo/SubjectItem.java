@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,11 +33,21 @@ public class SubjectItem {
 	@SequenceGenerator(name="S_SubjectItem",allocationSize=1,initialValue=1, sequenceName="S_SubjectItem") 
 	private Integer id;
 	//外键
-	private Integer subjectId;
+	//private Integer subjectId;
+	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+	@JoinColumn(name="subjectid")
+	private Subject subject;
+	//团队id
+	private Integer teamID;
+	
 	//标题
 	private String title;
 	//工作小组
-	private Integer departmentID;
+	//private Integer departmentID;
+	
+	@ManyToOne
+	private Department department;
+	
 	//负责人
 	@ManyToOne
 	private Staffer completer;
@@ -64,18 +75,21 @@ public class SubjectItem {
 	@Column(length=10000)
 	private String content;
 	
+	//状态：1待细分2待审核3已审核
+	private int status;
+	
 	public Integer getId() {
 		return id;
 	}
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	public Integer getSubjectId() {
+	/*public Integer getSubjectId() {
 		return subjectId;
 	}
 	public void setSubjectId(Integer subjectId) {
 		this.subjectId = subjectId;
-	}
+	}*/
 	public String getTitle() {
 		return title;
 	}
@@ -83,11 +97,11 @@ public class SubjectItem {
 		this.title = title;
 	}
 	
-	public Integer getDepartmentID() {
-		return departmentID;
+	public Department getDepartment() {
+		return department;
 	}
-	public void setDepartmentID(Integer departmentID) {
-		this.departmentID = departmentID;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 	public Staffer getCompleter() {
 		return completer;
@@ -131,6 +145,25 @@ public class SubjectItem {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public Subject getSubject() {
+		return subject;
+	}
+	public void setSubject(Subject subject) {
+		this.subject = subject;
+	}
+	public Integer getTeamID() {
+		return teamID;
+	}
+	public void setTeamID(Integer teamID) {
+		this.teamID = teamID;
+	}
+	
 	
 }
 

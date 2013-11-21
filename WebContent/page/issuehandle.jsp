@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="/struts-tags" prefix="s"%>
-<%@ include file="header.jsp" %>
+<%@ include file="headernew.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 
 <html>
 <head>
+  <link href="<%=basePath %>Content/data/style.css" rel="stylesheet" type="text/css" />
+   <link href="<%=basePath %>Content/thickbox.css" rel="stylesheet" type="text/css" />
+   <script src="<%=basePath %>Scripts/common.js" type="text/javascript"></script>
+   <script src="<%=basePath %>Scripts/thickbox.js" type="text/javascript"></script>
 <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 <script type="text/javascript" src="ckeditor/config.js"></script>
 		<script type="text/javascript">
@@ -151,6 +155,8 @@ function cancleIssue(id){
             <div class="Solution Insert">
                 
                 <p class="createEdit">
+                <a class="Blue edit" target="_blank" href="<%=basePath %>issueexpire?id=<s:property value="#request.aIssue.id" />">
+                        延期</a>
                 <a class="Blue edit" href="<%=basePath %>issueprint?id=<s:property value="#request.aIssue.id" />">
                         查看任务单</a>
                 	<a class="Blue edit" href="<%=basePath %>issueadd?did=<s:property value="#request.department.did" />&id=<s:property value="#request.aIssue.id" />">

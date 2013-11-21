@@ -1,6 +1,7 @@
 package yofoto.issue.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -13,8 +14,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.CriteriaSpecification;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projection;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.impl.CriteriaImpl;
 import org.hibernate.metadata.ClassMetadata;
+import org.hibernate.transform.ResultTransformer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import yofoto.issue.util.ReflectionUtils;
+import yofoto.issue.vo.Page;
 
 /**
  * 封装Hibernate原生API的DAO泛型基类.
@@ -395,5 +401,60 @@ public class SimpleHibernateDao<T, PK extends Serializable>{
 		}
 		Object object = findUniqueBy(propertyName, newValue);
 		return (object == null);
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected long countCriteriaResult(final Criteria c) {
+		CriteriaImpl impl = (CriteriaImpl) c;
+
+		// 先把Projection、ResultTransformer、OrderBy取出来,清空三者后再执行Count操作
+		Projection projection = impl.getProjection();
+		ResultTransformer transformer = impl.getResultTransformer();
+
+		List<CriteriaImpl.OrderEntry> orderEntries = null;
+		try {
+			orderEntries = (List) ReflectionUtils.getFieldValue(impl, "orderEntries");
+			ReflectionUtils.setFieldValue(impl, "orderEntries", new ArrayList());
+		} catch (Exception e) {
+			logger.error("不可能抛出的异常:{}", e.getMessage());
+		}
+
+		// 执行Count查询
+		Long totalCountObject = ((Number) c.setProjection(Projections.rowCount()).uniqueResult()).longValue();
+		long totalCount = (totalCountObject != null) ? totalCountObject : 0;
+
+		// 将之前的Projection,ResultTransformer和OrderBy条件重新设回去
+		c.setProjection(projection);
+
+		if (projection == null) {
+			c.setResultTransformer(CriteriaSpecification.ROOT_ENTITY);
+		}
+		if (transformer != null) {
+			c.setResultTransformer(transformer);
+		}
+		try {
+			ReflectionUtils.setFieldValue(impl, "orderEntries", orderEntries);
+		} catch (Exception e) {
+			logger.error("不可能抛出的异常:{}", e.getMessage());
+		}
+
+		return totalCount;
+	}
+	
+	protected Criteria setPageParater(final Criteria c, final Page page){
+		c.setFirstResult(page.getFirstResult()-1);
+		c.setMaxResults(page.getPageNum());
+		if(page.getOrderBy()!=null && !"".equals(page.getOrderBy())){
+			String[] orderBy = page.getOrderBy().split(":");
+			if(orderBy.length>=2){
+				if(orderBy[1].equals("asc"))
+					c.addOrder(Order.asc(orderBy[0]));
+				if(orderBy[1].equals("desc"))
+					c.addOrder(Order.desc(orderBy[0]));
+			}
+		}else {
+			c.addOrder(Order.desc("id"));
+		}
+		return c;
 	}
 }

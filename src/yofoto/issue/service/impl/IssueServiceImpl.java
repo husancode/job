@@ -79,6 +79,8 @@ public class IssueServiceImpl extends SimpleHibernateDao<Issue,Integer>{
 		else
 			return source;
 	}
+	
+
 	//2012/12/17；excel批量导入任务
 	public void addBatchIssue(File source, Department department,Staffer staffer)throws Exception{
 		FileInputStream is = new FileInputStream(source);
@@ -972,22 +974,7 @@ public class IssueServiceImpl extends SimpleHibernateDao<Issue,Integer>{
 		return criterion;
 	}
 	
-	private Criteria setPageParater(final Criteria c, final Page page){
-		c.setFirstResult(page.getFirstResult()-1);
-		c.setMaxResults(page.getPageNum());
-		if(page.getOrderBy()!=null && !"".equals(page.getOrderBy())){
-			String[] orderBy = page.getOrderBy().split(":");
-			if(orderBy.length>=2){
-				if(orderBy[1].equals("asc"))
-					c.addOrder(Order.asc(orderBy[0]));
-				if(orderBy[1].equals("desc"))
-					c.addOrder(Order.desc(orderBy[0]));
-			}
-		}else {
-			c.addOrder(Order.desc("id"));
-		}
-		return c;
-	}
+
 	
 	//
 	public void modIssue(final Issue issue, final Issue aIssue){
@@ -1058,6 +1045,52 @@ public class IssueServiceImpl extends SimpleHibernateDao<Issue,Integer>{
 	public void cancle(Issue issue){
 		issue.setCompleteStatus(6);
 		save(issue);
+	}
+	
+	public void sqyy(Issue aIssue){
+		Issue issue = load(aIssue.getId());
+		issue.setReason(aIssue.getReason());
+		issue.setOriginalExpireDate(aIssue.getExprireDate());
+		issue.setExpireFlag(1);
+		save(issue);
+	}
+	
+	public int tyyq(Integer id,String flag){
+		int result = 2;
+		Issue issue = load(id);
+		if("1".equals(flag)){
+			issue.setExpireFlag(result);
+			Date date = issue.getExprireDate();
+			issue.setExprireDate(issue.getOriginalExpireDate());
+			issue.setOriginalExpireDate(date);
+			
+		}else{
+			result = 3;
+			issue.setExpireFlag(result);
+		}
+		save(issue);
+		return result;
+	}
+	
+	public void cancel(Issue aIssue){
+		Issue issue = load(aIssue.getId());
+		issue.setCancelFlag(1);
+		issue.setCancelReason(aIssue.getCancelReason());
+		save(issue);
+	}
+	
+	public int docancel(Integer id, String flag){
+		int result = 2;
+		Issue issue = load(id);
+		if("1".equals(flag)){
+			issue.setCancelFlag(result);
+			issue.setStatus(2);
+		}else{
+			result = 3;
+			issue.setCancelFlag(result);
+		}
+		save(issue);
+		return result;
 	}
 
 }

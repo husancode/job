@@ -10,23 +10,30 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import yofoto.issue.pojo.Issue;
+import yofoto.issue.pojo.Upload;
 import yofoto.issue.service.impl.IssueServiceImpl;
+import yofoto.issue.service.impl.UploadService;
 
 /**
  * @author husan
  * @Date 2013-9-3
  * @description
  */
+
 public class IndexAction extends BaseAction{
+	
 	@Autowired
 	private IssueServiceImpl issueImpl;
 	
-	private Integer tid;
+	@Autowired
+	private UploadService uploadService;
+
 	@Override
 	public String execute() throws Exception {
 		// TODO Auto-generated method stub
 		if(tid==null || tid==0)
 			tid=1;
+		
 		Criterion[] criterions = new Criterion[3];
 		criterions[0] = Restrictions.eq("status", 1);
 		criterions[1] = Restrictions.eq("teamID", tid);
@@ -39,27 +46,34 @@ public class IndexAction extends BaseAction{
 		List<Issue> toReviewIssues = issueImpl.getIssues(1, 3, criterions);
 		//工作任务即将到期
 		List<Issue> expireIssues = issueImpl.getIssueExpireList(2, 3);
+		
+		//
+		Upload upload = uploadService.getNewestUpload(tid);
+		
 		//优秀任务评分确认
 		
 		//待延期任务确认
-		
+		Criterion[] criterion = new Criterion[3];
+		criterion[0] = Restrictions.eq("expireFlag", 1);
+		criterion[1] = Restrictions.eq("status", 1);
+		criterion[2] = Restrictions.eq("teamID", tid);
+		List<Issue> yqIssues = issueImpl.getIssues(1,3,criterion);
 		//任务待取消确认
-		
+		criterion[0] = Restrictions.eq("cancelFlag", 1);
+		List<Issue> cancelIssues = issueImpl.getIssues(1, 3, criterion);
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("toScoreIssues", toScoreIssues);
 		request.setAttribute("toReviewIssues", toReviewIssues);
 		request.setAttribute("expireIssues", expireIssues);
+		request.setAttribute("tid",tid);
+		request.setAttribute("upload", upload);
+		request.setAttribute("yqIssues", yqIssues);
+		request.setAttribute("cancelIssues", cancelIssues);
+		
 		return SUCCESS;
 	}
-	public Integer getTid() {
-		return tid;
-	}
-	public void setTid(Integer tid) {
-		this.tid = tid;
-	}
 	
 	
-
 }
 
 

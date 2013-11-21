@@ -50,6 +50,7 @@ public class LoginAction extends ActionSupport{
 	
 	public String toLogin() throws Exception {
 		// TODO Auto-generated method stub
+		System.out.println("login");
 		Staffer staffer = stafferImpl.login(email,password);
 		logger.info("login execute");
 		String result = null;
@@ -64,12 +65,16 @@ public class LoginAction extends ActionSupport{
 				session.setAttribute("teams", teamSize);
 				session.setAttribute("departments", departSize);
 				session.setAttribute("user", staffer);
+				//设置当前tid
+				
 			}else{
 				List<Team> teams = staffer.getTeams();
 				List<Department> departments = staffer.getDepartments();
-				session.setAttribute("teams", teams.size());
-				session.setAttribute("departments", departments.size());
+				session.setAttribute("teams", teams);
+				//System.out.println(teams.size());
+				session.setAttribute("departments", departments);
 				session.setAttribute("user", staffer);
+				session.setAttribute("tid", teams.get(0).getTid());
 			}
 			
 			String user = staffer.getSid()+"!"+session.getId();

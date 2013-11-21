@@ -47,25 +47,21 @@ public class IndexFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		
 		HttpServletRequest req = (HttpServletRequest)request;
 		req.setCharacterEncoding("utf-8");
 		//过滤静态资源
 		if(!excludeStaticSource(req.getRequestURI())){
-			
 			chain.doFilter(request, response);
 		}else{
 			HttpSession session = req.getSession();
 			if(session == null || session.getAttribute("user") == null){
 				Cookie[] cookies = req.getCookies();
 				if(cookies!= null){
-					
 					boolean isLogin = false;
 					String user = null;
 					for(Cookie cookie : cookies){
 						if("user".equals(cookie.getName())){
 							user = cookie.getValue();
-							//System.out.println(user);
 							Calendar calendar = Calendar.getInstance();
 							calendar.setTime(new Date());
 							calendar.add(Calendar.DAY_OF_YEAR, -7);
@@ -90,19 +86,18 @@ public class IndexFilter implements Filter{
 							}else{
 								List<Team> teams = staffer.getTeams();
 								List<Department> departments = staffer.getDepartments();
-								session.setAttribute("teams", teams.size());
-								session.setAttribute("departments", departments.size());
+								session.setAttribute("teams", teams);
+								//System.out.println(teams.size());
+								session.setAttribute("departments", departments);
 								session.setAttribute("user", staffer);
+								session.setAttribute("tid", teams.get(0).getTid());
 							}
-							
-							
 						}
 					}else{
 						//返回登录页面
 						HttpServletResponse res = (HttpServletResponse) response;
 						String loginURL = req.getContextPath()+"/login";
 						if(req.getRequestURI().indexOf(loginURL)==-1){
-							
 							res.sendRedirect(loginURL);
 							return;
 						}
