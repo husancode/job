@@ -51,11 +51,11 @@ public class Allissue1Action extends ActionSupport{
 		HttpServletRequest request = ServletActionContext.getRequest();
 		HttpSession session = request.getSession();
 		Staffer staffer = (Staffer) session.getAttribute("user");
-		
 		team = teamImpl.load(tid);
 		if(!teamImpl.isInTeam(staffer, team)){
 			return ERROR;
 		}
+		
 		Criterion[] criterion = new Criterion[3];
 		criterion[0] = Restrictions.eq("status", 1);
 		criterion[1] = Restrictions.eq("teamID", tid);
@@ -64,12 +64,10 @@ public class Allissue1Action extends ActionSupport{
 		if(page==null)
 			page = new Page();
 		logger.info("-------"+page.getDepartmentid());
-	
 		page = issueImpl.searchPage(criterion,page);
-		
 		List<Team> teams = staffer.getTeams();
 		Set<Staffer> staffers = team.getStaffers();
-		//
+		System.out.println("ddd");
 		List<String> months = DateUtil.getMonths(2013);
 		request.setAttribute("months", months);
 		request.setAttribute("staffers", staffers);

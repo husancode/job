@@ -117,7 +117,7 @@ function addMore(obj)
       <div class="mina_nav_bm1"><a href="planadd">工作计划</a></div>
       <div class="mina_nav_bm2"><a href="myissue">我的任务</a></div>
       <div class="mina_nav_bm2"><a href="allissue">所有任务</a></div>
-      <div class="mina_nav_bm2"><a href="#">任务评分</a></div>
+      <div class="mina_nav_bm2"><a href="departscore">任务评分</a></div>
       <div class="mina_nav_bm2"><a href="#">任务统计</a></div>
       <div class="mina_nav_bm2"><a href="综合汇总_绩效评分(给主管打分1.2).html">综合汇总</a></div>
     </div>

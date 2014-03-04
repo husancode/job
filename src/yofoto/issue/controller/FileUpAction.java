@@ -33,9 +33,7 @@ public class FileUpAction extends BaseAction{
 		up.setTid(tid);
 		if(up!=null)
 		uploadService.save(up);
-		
 		ServletActionContext.getResponse().sendRedirect("index");
-		
 		return null;
 	}
 	

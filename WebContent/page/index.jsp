@@ -63,7 +63,7 @@ function downLoad(aa){
       <div class="mina_nav_bm2"><a href="planadd">工作计划</a></div>
       <div class="mina_nav_bm2"><a href="myissue2">我的任务</a></div>
       <div class="mina_nav_bm2"><a href="allissue2">所有任务</a></div>
-      <div class="mina_nav_bm2"><a href="#">任务评分</a></div>
+      <div class="mina_nav_bm2"><a href="departscore">任务评分</a></div>
       <div class="mina_nav_bm2"><a href="#">任务统计</a></div>
       <div class="mina_nav_bm2"><a href="综合汇总_绩效评分(给主管打分1.2).html">综合汇总</a></div>
     </div>
@@ -112,7 +112,9 @@ function downLoad(aa){
         </div>
         <div class="wenxing_mina_del">
           <div class="wenxing_mina_del_name">5.  优秀任务评分确认：</div>
-          <div class="wenxing_mina_del_info"><a href="温馨提示_优秀任务评分确认.html">市场发展规划宣导大会</a> </div>
+          <div class="wenxing_mina_del_info"><s:iterator value="#request.excellentIssues" var="issue">
+          	<a target="_blank" href="issueyx?id=<s:property value="#issue.id" />"><s:property value="#issue.title" /></a> |
+          </s:iterator>  </div>
         </div>
         <div class="wenxing_mina_del">
           <div class="wenxing_mina_del_name">6.  任务延期确认：</div>

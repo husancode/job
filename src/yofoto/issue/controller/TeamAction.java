@@ -53,10 +53,10 @@ public class TeamAction extends ActionSupport{
 		//管理员
 		if("admin".equals(staffer.getEmail())){
 			teams = teamImpl.loadAll();
-			
 		}else{
 			teams =  staffer.getTeams();
 		}
+		
 		String sid = String.valueOf(staffer.getSid());
 		for(Team team : teams){
 			String admin = team.getAdmin();

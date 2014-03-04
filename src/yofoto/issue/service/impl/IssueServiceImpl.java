@@ -1092,5 +1092,106 @@ public class IssueServiceImpl extends SimpleHibernateDao<Issue,Integer>{
 		save(issue);
 		return result;
 	}
+	
+	//qurity score
+	
+	public void qurityScore(Map score){
+		String sql = "select  id from ISSUEWORKFLOW i where issueid=? order by id asc";
+		String sql1 = "update ISSUEWORKFLOW t set t.professionalscore=?, t.professionalflag=1 where t.id=?";
+		Query query = super.getSession().createSQLQuery(sql);
+		Query query1 = super.getSession().createSQLQuery(sql1);
+		for(Object sid : score.keySet()){
+			Integer issueId = Integer.parseInt(String.valueOf(sid));
+			query.setParameter(0, issueId);
+			query.setMaxResults(1);
+			Object oid = query.uniqueResult();
+			Integer id = Integer.parseInt(String.valueOf(oid));
+			query1.setParameter(0, (Double)score.get(sid));
+			query1.setParameter(1, id);
+			query1.executeUpdate();
+			
+		}
+	}
+	//质量评分大于等于 0.3,优秀任务
+	public void qurityExcellentScore(Map score){
+	
+		Integer id = Integer.parseInt((String)score.get("id"));
+		Issue issue = load(id);
+	
+		issue.setProfessionalScore((Double)score.get("score"));
+		issue.setScoreFlag(1);
+	
+		issue.setScoreReson((String)score.get("jfly"));
+		String csr = (String)score.get("csr");
+		if(csr!=null && !"".equals(csr)){
+			String[] sid = csr.split("#");
+			List<String> to = new ArrayList<String>();
+			for(String s: sid){
+				Staffer staffer = stafferImpl.load(Integer.parseInt(s));
+				to.add(staffer.getEmail());
+			}
+			
+			String title = issue.getTitle()+" 被评为优秀任务等待确认！";
+			String content = title;
+			SendMailUtil.send(to,title,content,null);
+		}
+		
+		save(issue);
+	}
+	
+	public void progressScore(Map score){
+	
+		String sql = "select  id from ISSUEWORKFLOW i where issueid=? order by id asc";
+		String sql1 = "update ISSUEWORKFLOW t set t.progressscore=?, t.progressflag=1 where t.id=?";
+		Query query = super.getSession().createSQLQuery(sql);
+		Query query1 = super.getSession().createSQLQuery(sql1);
+		for(Object sid : score.keySet()){
+			
+			query.setParameter(0, Integer.parseInt(String.valueOf(sid)));
+			query.setMaxResults(1);
+			Object oid = query.uniqueResult();
+			Integer id = Integer.parseInt(String.valueOf(oid));
+			query1.setParameter(0, (Double)score.get(sid));
+			query1.setParameter(1, id);
+			query1.executeUpdate();
+			
+		}
+	}
+	//返回2同意加分，3不同意加分
+	public int tyjf(Integer id, String flag){
+		int result = 2;
+		Issue issue = load(id);
+		//同意加分
+		if("1".equals(flag)){
+			issue.setScoreFlag(result);
+			List<IssueWorkflow> list = issue.getIssueWorkflows();
+			IssueWorkflow iwf = list.get(list.size()-1);
+			iwf.setProfessionalScore(issue.getProfessionalScore());
+			iwf.setProfessionalFlag(true);
+			
+		}else{
+			result = 3;
+			issue.setScoreFlag(result);
+		}
+		save(issue);
+		return result;
+	}
+	
+	public void scoreFlag(Map score){
+		
+		String parter = "";
+		for(Object oid : score.keySet()){
+			Integer issueId = Integer.parseInt(String.valueOf(oid));
+			parter+=issueId+",";
+		}
+		if(parter.endsWith(","))
+			parter=parter.substring(0,parter.length()-1);
+		
+		System.out.println(parter);
+		String sql = "update issue set completeStatus=5 where id in(select  issueid from ISSUEWORKFLOW i where progressflag=1 and professionalflag=1 and issueid in("+parter+"))";
+		Query query = super.getSession().createSQLQuery(sql);
+		query.executeUpdate();
+		
+	}
 
 }

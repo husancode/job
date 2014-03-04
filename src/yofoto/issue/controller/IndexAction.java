@@ -51,7 +51,8 @@ public class IndexAction extends BaseAction{
 		Upload upload = uploadService.getNewestUpload(tid);
 		
 		//优秀任务评分确认
-		
+		criterions[2] = Restrictions.eq("scoreFlag", 1);
+		List<Issue> excellentIssues = issueImpl.getIssues(1, 3, criterions);
 		//待延期任务确认
 		Criterion[] criterion = new Criterion[3];
 		criterion[0] = Restrictions.eq("expireFlag", 1);
@@ -69,7 +70,7 @@ public class IndexAction extends BaseAction{
 		request.setAttribute("upload", upload);
 		request.setAttribute("yqIssues", yqIssues);
 		request.setAttribute("cancelIssues", cancelIssues);
-		
+		request.setAttribute("excellentIssues", excellentIssues);
 		return SUCCESS;
 	}
 	

@@ -19,6 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.BatchSize;
+import org.springframework.beans.factory.annotation.Required;
 
 /**
  * @author husan
@@ -118,6 +119,13 @@ public class Issue {
 	private String subject;
 	//1计划任务 2新增任务
 	private Integer issueType;
+	//质量评分申请，大于等于0.3分情况
+	
+	private Double professionalScore;
+	//加分理由
+	private String scoreReson;
+	//1申请加分2同意加分3不同意加分
+	private Integer scoreFlag;
 	
 	public Integer getTeamID() {
 		return teamID;
@@ -377,6 +385,31 @@ public class Issue {
 	public void setCancelFlag(Integer cancelFlag) {
 		this.cancelFlag = cancelFlag;
 	}
+
 	
+
+	public Double getProfessionalScore() {
+		return professionalScore;
+	}
+
+	public void setProfessionalScore(Double professionalScore) {
+		this.professionalScore = professionalScore;
+	}
+
+	public String getScoreReson() {
+		return scoreReson;
+	}
+
+	public void setScoreReson(String scoreReson) {
+		this.scoreReson = scoreReson;
+	}
+
+	public Integer getScoreFlag() {
+		return scoreFlag;
+	}
+
+	public void setScoreFlag(Integer scoreFlag) {
+		this.scoreFlag = scoreFlag;
+	}
 	
 }

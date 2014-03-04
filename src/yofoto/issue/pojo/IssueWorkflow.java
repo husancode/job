@@ -78,9 +78,13 @@ public class IssueWorkflow {
 	//专业评分
 	private double professionalScore;
 	
+	private Boolean progressFlag;
+	
+	private Boolean professionalFlag;
+	
 	//评分批注
 	private String scoreNote;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -117,27 +121,29 @@ public class IssueWorkflow {
 	public void setIsStop(Integer isStop) {
 		this.isStop = isStop;
 	}
-	
-	/*public byte[] getNote() {
-		return note;
+	public String getContent() {
+		return content;
 	}
-	public void setNote(byte[] note) {
-		this.note = note;
-	}*/
-	
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public Date getDealTime() {
 		return dealTime;
 	}
 	public void setDealTime(Date dealTime) {
 		this.dealTime = dealTime;
 	}
-	
-	
 	public double getScore() {
 		return score;
 	}
 	public void setScore(double score) {
 		this.score = score;
+	}
+	public boolean isScored() {
+		return isScored;
+	}
+	public void setScored(boolean isScored) {
+		this.isScored = isScored;
 	}
 	public double getProgressScore() {
 		return progressScore;
@@ -151,20 +157,18 @@ public class IssueWorkflow {
 	public void setProfessionalScore(double professionalScore) {
 		this.professionalScore = professionalScore;
 	}
-	public boolean isScored() {
-		return isScored;
+	public Boolean getProgressFlag() {
+		return progressFlag;
 	}
-	public void setScored(boolean isScored) {
-		this.isScored = isScored;
+	public void setProgressFlag(Boolean progressFlag) {
+		this.progressFlag = progressFlag;
 	}
-	public String getContent() {
-		return content;
+	public Boolean getProfessionalFlag() {
+		return professionalFlag;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setProfessionalFlag(Boolean professionalFlag) {
+		this.professionalFlag = professionalFlag;
 	}
-	
-	
 	public String getScoreNote() {
 		return scoreNote;
 	}
@@ -172,6 +176,4 @@ public class IssueWorkflow {
 		this.scoreNote = scoreNote;
 	}
 	
-	
-
 }
